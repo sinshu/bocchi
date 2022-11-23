@@ -9,7 +9,9 @@ namespace Bocchi.Math;
 /// </summary>
 /// <typeparam name="T">The type of the values.</typeparam>
 public struct Vec<T>
-    where T : struct, IAdditionOperators<T, T, T>, ISubtractionOperators<T, T, T>, IMultiplyOperators<T, T, T>, IDivisionOperators<T, T, T>
+    where T : struct,
+    IAdditionOperators<T, T, T>, ISubtractionOperators<T, T, T>, IMultiplyOperators<T, T, T>, IDivisionOperators<T, T, T>,
+    IAdditiveIdentity<T, T>, IMultiplicativeIdentity<T, T>
 {
     private readonly T[] data;
 
@@ -25,6 +27,31 @@ public struct Vec<T>
         }
 
         this.data = data;
+    }
+
+    /// <summary>
+    /// Constructs a vector filled with zeros.
+    /// </summary>
+    /// <param name="length">The length of the vector.</param>
+    /// <returns>The resultant vector.</returns>
+    public static Vec<T> Zeros(int length)
+    {
+        return new Vec<T>(new T[length]);
+    }
+
+    /// <summary>
+    /// Constructs a vector filled with ones.
+    /// </summary>
+    /// <param name="length">The length of the vector.</param>
+    /// <returns>The resultant vector.</returns>
+    public static Vec<T> Ones(int length)
+    {
+        var data = new T[length];
+        for (var i = 0; i < data.Length; i++)
+        {
+            data[i] = T.MultiplicativeIdentity;
+        }
+        return new Vec<T>(data);
     }
 
     /// <summary>

@@ -9,7 +9,9 @@ namespace Bocchi.Math
     public static class VecEx
     {
         public static Vec<T> ToVec<T>(this T[] data)
-            where T : struct, IAdditionOperators<T, T, T>, ISubtractionOperators<T, T, T>, IMultiplyOperators<T, T, T>, IDivisionOperators<T, T, T>
+            where T : struct,
+            IAdditionOperators<T, T, T>, ISubtractionOperators<T, T, T>, IMultiplyOperators<T, T, T>, IDivisionOperators<T, T, T>,
+            IAdditiveIdentity<T, T>, IMultiplicativeIdentity<T, T>
         {
             return new Vec<T>(data);
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Numerics;
 using NUnit.Framework;
 using Bocchi.Internal;
@@ -8,6 +9,22 @@ namespace BocchiTest.MathTest;
 
 public class VecTest
 {
+    [Test]
+    public void Zeros()
+    {
+        var expected = Enumerable.Repeat<double>(0, 3).ToArray();
+        var actual = Vec<double>.Zeros(3);
+        CollectionAssert.AreEqual(expected, actual.Data);
+    }
+
+    [Test]
+    public void Ones()
+    {
+        var expected = Enumerable.Repeat<double>(1, 3).ToArray();
+        var actual = Vec<double>.Ones(3);
+        CollectionAssert.AreEqual(expected, actual.Data);
+    }
+
     [Test]
     public void Add1()
     {
