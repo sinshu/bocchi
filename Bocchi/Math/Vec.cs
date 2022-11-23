@@ -28,10 +28,10 @@ public struct Vec<T>
     }
 
     /// <summary>
-    /// Computes the element-wise addition of the vectors.
+    /// Computes the element-wise addition.
     /// </summary>
-    /// <param name="a">The vector a.</param>
-    /// <param name="b">The vector b.</param>
+    /// <param name="a">The augend.</param>
+    /// <param name="b">The addend.</param>
     /// <returns>The resultant vector.</returns>
     public static Vec<T> operator +(Vec<T> a, Vec<T> b)
     {
@@ -41,20 +41,56 @@ public struct Vec<T>
     }
 
     /// <summary>
-    /// Computes the element-wise addition of the vectors.
-    /// The first vector will be replaced by the resultant vector.
+    /// Computes the element-wise addition.
     /// </summary>
-    /// <param name="x"></param>
-    public void AddInplace(Vec<T> x)
+    /// <param name="a">The augend.</param>
+    /// <param name="b">The addend.</param>
+    /// <returns>The resultant vector.</returns>
+    public static Vec<T> operator +(Vec<T> a, T b)
     {
-        ArrayMath.Add<T>(data, x.data, data);
+        var result = new T[a.Length];
+        ArrayMath.Add<T>(a.data, b, result);
+        return result.ToVec();
     }
 
     /// <summary>
-    /// Computes the element-wise subtraction of the vectors.
+    /// Computes the element-wise addition.
     /// </summary>
-    /// <param name="a">The vector a.</param>
-    /// <param name="b">The vector b.</param>
+    /// <param name="a">The augend.</param>
+    /// <param name="b">The addend.</param>
+    /// <returns>The resultant vector.</returns>
+    public static Vec<T> operator +(T a, Vec<T> b)
+    {
+        var result = new T[b.Length];
+        ArrayMath.Add<T>(b.data, a, result);
+        return result.ToVec();
+    }
+
+    /// <summary>
+    /// Computes the element-wise addition.
+    /// This vector will be replaced by the resultant vector.
+    /// </summary>
+    /// <param name="b">The addend.</param>
+    public void AddInplace(Vec<T> b)
+    {
+        ArrayMath.Add<T>(data, b.data, data);
+    }
+
+    /// <summary>
+    /// Computes the element-wise addition.
+    /// This vector will be replaced by the resultant vector.
+    /// </summary>
+    /// <param name="b">The addend.</param>
+    public void AddInplace(T b)
+    {
+        ArrayMath.Add<T>(data, b, data);
+    }
+
+    /// <summary>
+    /// Computes the element-wise subtraction.
+    /// </summary>
+    /// <param name="a">The minuend.</param>
+    /// <param name="b">The subtrahend.</param>
     /// <returns>The resultant vector.</returns>
     public static Vec<T> operator -(Vec<T> a, Vec<T> b)
     {
@@ -64,13 +100,49 @@ public struct Vec<T>
     }
 
     /// <summary>
-    /// Computes the element-wise subtraction of the vectors.
-    /// The first vector will be replaced by the resultant vector.
+    /// Computes the element-wise subtraction.
     /// </summary>
-    /// <param name="x"></param>
-    public void SubInplace(Vec<T> x)
+    /// <param name="a">The minuend.</param>
+    /// <param name="b">The subtrahend.</param>
+    /// <returns>The resultant vector.</returns>
+    public static Vec<T> operator -(Vec<T> a, T b)
     {
-        ArrayMath.Sub<T>(data, x.data, data);
+        var result = new T[a.Length];
+        ArrayMath.Sub<T>(a.data, b, result);
+        return result.ToVec();
+    }
+
+    /// <summary>
+    /// Computes the element-wise subtraction.
+    /// </summary>
+    /// <param name="a">The minuend.</param>
+    /// <param name="b">The subtrahend.</param>
+    /// <returns>The resultant vector.</returns>
+    public static Vec<T> operator -(T a, Vec<T> b)
+    {
+        var result = new T[b.Length];
+        ArrayMath.Sub<T>(b.data, a, result);
+        return result.ToVec();
+    }
+
+    /// <summary>
+    /// Computes the element-wise subtraction.
+    /// This vector will be replaced by the resultant vector.
+    /// </summary>
+    /// <param name="b">The subtrahend.</param>
+    public void SubInplace(Vec<T> b)
+    {
+        ArrayMath.Sub<T>(data, b.data, data);
+    }
+
+    /// <summary>
+    /// Computes the element-wise subtraction.
+    /// This vector will be replaced by the resultant vector.
+    /// </summary>
+    /// <param name="b">The subtrahend.</param>
+    public void SubInplace(T b)
+    {
+        ArrayMath.Sub<T>(data, b, data);
     }
 
     /// <summary>
