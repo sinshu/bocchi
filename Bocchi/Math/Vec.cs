@@ -8,10 +8,7 @@ namespace Bocchi.Math;
 /// Represents a vector.
 /// </summary>
 /// <typeparam name="T">The type of the values.</typeparam>
-public struct Vec<T>
-    where T : struct,
-    IAdditionOperators<T, T, T>, ISubtractionOperators<T, T, T>, IMultiplyOperators<T, T, T>, IDivisionOperators<T, T, T>,
-    IAdditiveIdentity<T, T>, IMultiplicativeIdentity<T, T>
+public struct Vec<T> where T : struct, INumberBase<T>
 {
     private readonly T[] data;
 

@@ -16,8 +16,7 @@ public static class ArrayMath
     /// <param name="a">The augend.</param>
     /// <param name="b">The addend.</param>
     /// <param name="result">The result of the addition.</param>
-    public static void Add<T>(ReadOnlySpan<T> a, ReadOnlySpan<T> b, Span<T> result)
-        where T : struct, IAdditionOperators<T, T, T>
+    public static void Add<T>(ReadOnlySpan<T> a, ReadOnlySpan<T> b, Span<T> result) where T : struct, INumberBase<T>
     {
         ThrowIfLengthsAreNotSame(a, b, result);
 
@@ -49,8 +48,7 @@ public static class ArrayMath
     /// <param name="a">The augend.</param>
     /// <param name="b">The addend.</param>
     /// <param name="result">The result of the addition.</param>
-    public static void Add<T>(ReadOnlySpan<T> a, T b, Span<T> result)
-        where T : struct, IAdditionOperators<T, T, T>
+    public static void Add<T>(ReadOnlySpan<T> a, T b, Span<T> result) where T : struct, INumberBase<T>
     {
         ThrowIfLengthsAreNotSame(a, result);
 
@@ -82,8 +80,7 @@ public static class ArrayMath
     /// <param name="a">The minuend.</param>
     /// <param name="b">The subtrahend.</param>
     /// <param name="result">The result of the subtraction.</param>
-    public static void Sub<T>(ReadOnlySpan<T> a, ReadOnlySpan<T> b, Span<T> result)
-        where T : struct, ISubtractionOperators<T, T, T>
+    public static void Sub<T>(ReadOnlySpan<T> a, ReadOnlySpan<T> b, Span<T> result) where T : struct, INumberBase<T>
     {
         ThrowIfLengthsAreNotSame(a, b, result);
 
@@ -115,8 +112,7 @@ public static class ArrayMath
     /// <param name="a">The minuend.</param>
     /// <param name="b">The subtrahend.</param>
     /// <param name="result">The result of the subtraction.</param>
-    public static void Sub<T>(ReadOnlySpan<T> a, T b, Span<T> result)
-        where T : struct, ISubtractionOperators<T, T, T>
+    public static void Sub<T>(ReadOnlySpan<T> a, T b, Span<T> result) where T : struct, INumberBase<T>
     {
         ThrowIfLengthsAreNotSame(a, result);
 
@@ -148,8 +144,7 @@ public static class ArrayMath
     /// <param name="a">The multiplicand.</param>
     /// <param name="b">The multiplier.</param>
     /// <param name="result">The result of the multiplication.</param>
-    public static void Mul<T>(ReadOnlySpan<T> a, ReadOnlySpan<T> b, Span<T> result)
-        where T : struct, IMultiplyOperators<T, T, T>
+    public static void Mul<T>(ReadOnlySpan<T> a, ReadOnlySpan<T> b, Span<T> result) where T : struct, INumberBase<T>
     {
         ThrowIfLengthsAreNotSame(a, b, result);
 
@@ -181,8 +176,7 @@ public static class ArrayMath
     /// <param name="a">The multiplicand.</param>
     /// <param name="b">The multiplier.</param>
     /// <param name="result">The result of the multiplication.</param>
-    public static void Mul<T>(ReadOnlySpan<T> a, T b, Span<T> result)
-        where T : struct, IMultiplyOperators<T, T, T>
+    public static void Mul<T>(ReadOnlySpan<T> a, T b, Span<T> result) where T : struct, INumberBase<T>
     {
         ThrowIfLengthsAreNotSame(a, result);
 
@@ -213,8 +207,7 @@ public static class ArrayMath
     /// <param name="a">The dividend.</param>
     /// <param name="b">The divisor.</param>
     /// <param name="result">The result of the division.</param>
-    public static void Div<T>(ReadOnlySpan<T> a, ReadOnlySpan<T> b, Span<T> result)
-        where T : struct, IDivisionOperators<T, T, T>
+    public static void Div<T>(ReadOnlySpan<T> a, ReadOnlySpan<T> b, Span<T> result) where T : struct, INumberBase<T>
     {
         ThrowIfLengthsAreNotSame(a, b, result);
 
@@ -246,8 +239,7 @@ public static class ArrayMath
     /// <param name="a">The dividend.</param>
     /// <param name="b">The divisor.</param>
     /// <param name="result">The result of the division.</param>
-    public static void Div<T>(ReadOnlySpan<T> a, T b, Span<T> result)
-        where T : struct, IMultiplyOperators<T, T, T>, IDivisionOperators<T, T, T>, IMultiplicativeIdentity<T, T>
+    public static void Div<T>(ReadOnlySpan<T> a, T b, Span<T> result) where T : struct, INumberBase<T>
     {
         ThrowIfLengthsAreNotSame(a, result);
 
